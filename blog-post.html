@@ -12,7 +12,7 @@
     <!-- Page attributes -->
     <link rel="shortcut icon" href="images/favicon.png">
 
-    <title>Hawsoo Portfolio | Blog Post (TODO: add js script to insert title)</title>
+    <title></title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -197,10 +197,6 @@
                     $('#blog_content_import').load('templates/blog/' + postQuery + '/body.html');
                     console.log(document.getElementById('blog_content_import'));
 
-                    // Add Comments & like button
-                    document.getElementById('fb_like_insert').innerHTML = '<div class="fb-like" data-href="' + window.location.href + '" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>';
-                    document.getElementById('fb_comments_insert').innerHTML = '<div class="fb-comments" data-href="' + window.location.href + '" data-width="100%" data-numposts="5"></div>';
-
                     // Add OpenGraph tags (for FB)
                     document.getElementById('head_tag').innerHTML +=
                         '<meta property="og:url" content="' + window.location.href + '" />' +
@@ -208,6 +204,10 @@
 	                    '<meta property="og:title" content="' + postTitle + '" />' +
 	                    '<meta property="og:description" content="' + postDesc + '" />' +
 	                    '<meta property="og:image" content="' + postImg + '" />';
+
+                    // Add Comments & like button
+                    document.getElementById('fb_like_insert').innerHTML = '<div class="fb-like" data-href="' + window.location.href + '" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>';
+                    document.getElementById('fb_comments_insert').innerHTML = '<div class="fb-comments" data-href="' + window.location.href + '" data-width="100%" data-numposts="5"></div>';
                 }
             }
 
