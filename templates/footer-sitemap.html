@@ -1,0 +1,55 @@
+﻿<div class="well">
+    <div class="row footer-site-map">
+        <div class="col-md-2"></div>
+
+        <ul class="col-md-3 col-xs-4">
+            <li>The Portfolio of Hawsoo</li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="blog-home.html">Blog</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <ul id="projects-footer-links" class="col-md-3 col-xs-4">
+            <li>Projects</li>
+            <!-- Items are added here with a JS function -->
+        </ul>
+        <ul id="posts-footer-links" class="col-md-3 col-xs-4">
+            <li>Blog Posts</li>
+            <!--<li><a href="index.html">&lt;None&gt;</a></li>-->
+        </ul>
+    </div>
+
+    <div class="row text-center">
+        <div class="btn-group">
+
+            <a class="btn btn-primary" href="#"><i class="fa fa-2x fa-fw fa-facebook-square" style="display: inline;"></i></a>
+            <a class="btn btn-info" href="#"><i class="fa fa-2x fa-fw fa-twitter-square" style="display: inline;"></i></a>
+            <a class="btn btn-danger" href="http://bit.ly/1nvOYCg"><i class="fa fa-2x fa-fw fa-youtube" style="display: inline;"></i></a>
+            <a class="btn btn-warning" href="contact.html"><i class="fa fa-2x fa-fw fa-envelope" style="display: inline;"></i></a>
+
+        </div>
+    </div>
+</div>
+
+<!-- Project List -->
+<script src="templates/projects/project-list.js"></script>
+
+<!-- Posts List -->
+<script src="templates/blog/blog-post-list.js"></script>
+
+<!-- Insert project/blog entries -->
+<script>
+    $(document).ready(function () {
+        // Add projects
+        var projectsList = document.getElementById('projects-footer-links');
+        for (var i = 0; i < globalProjectList.length; i++) {
+            projectsList.innerHTML += '<li><a href="portfolio-item.html?pname=' + globalProjectList[i][2] + '">' + globalProjectList[i][0] + '</a></li>';
+        }
+
+        // Add posts (only first 5)
+        var postsList = document.getElementById('posts-footer-links');
+        for (var i = 0; i < globalBlogPostList.length && i < 5; i++) {
+            postsList.innerHTML += '<li><a href="blog-post.html?post=' + globalBlogPostList[i][4] + '">' + globalBlogPostList[i][0] + '</a></li>';
+        }
+    });
+</script>

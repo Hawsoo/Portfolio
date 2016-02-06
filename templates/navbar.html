@@ -1,0 +1,62 @@
+﻿<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">
+                <img src="images/icon_logo.png" alt="Hawsoo Logo" style="width: 20px; height: 20px; float: left;" />
+                &nbsp;Hawsoo Portfolio
+            </a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <!-- Projects -->
+                <li id="navbar_dropdown" class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Projects <b class="caret"></b></a>
+                    <ul id="projects-ddl" class="dropdown-menu">
+                        <!-- Items are added here with a JS function -->
+                    </ul>
+                </li>
+                <!-- Blog -->
+                <li id="navbar_blog">
+                    <a href="blog-home.html">Blog</a>
+                </li>
+                <!-- About -->
+                <li id="navbar_about">
+                    <a href="about.html">About</a>
+                </li>
+                <!-- Contact -->
+                <li id="navbar_contact">
+                    <a href="contact.html">Contact</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+<!-- Project List -->
+<script src="templates/projects/project-list.js"></script>
+
+<!-- Insert project entries -->
+<script>
+    $(document).ready(function () {
+        var projectsList = document.getElementById('projects-ddl');
+
+        // Keep adding entries
+        for (var i = 0; i < globalProjectList.length; i++) {
+            projectsList.innerHTML +=
+                '<li id="proj-' + globalProjectList[i][2] + '">' +
+                '<a href="portfolio-item.html?pname=' + globalProjectList[i][2] + '">' + globalProjectList[i][0] + '</a>' +
+                '</li>';
+        }
+    });
+</script>

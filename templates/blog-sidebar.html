@@ -1,0 +1,221 @@
+﻿<!-- Blog Sidebar Widgets Column -->
+<div class="col-md-4">
+
+    <!-- Blog Search Well -->
+    <div class="well" style="position: relative;">
+        <div class="input-group">
+            <!--<input id="sidebar_searchbar" type="text" class="form-control" placeholder="Search Hawsoo Blog..." autocomplete="off" spellcheck="false" onfocus="SetTypeaheadVisible(true);" onblur="SetTypeaheadVisible(false);">-->
+            <input id="sidebar_searchbar" type="text" class="form-control" placeholder="Search Hawsoo Blog..." autocomplete="off" spellcheck="false">
+            <span class="input-group-btn">
+                <button id="sidebar_button" class="btn btn-default" type="button" onclick="DoSearchQuery();"><i class="fa fa-search"></i></button>
+            </span>
+        </div>
+
+        <ul id="sidebar_searchbar_typehead_list" class="dropdown-menu" style="padding: 5px 0; display: none; position: absolute; z-index: 100;"></ul>
+        <!--<div id="sidebar_searchbar_typehead_list" class="text-left btn-group-vertical" role="group" style="padding: 5px 0; display: block; position: absolute; z-index: 100;"></div>-->
+
+        <!-- /.input-group -->
+    </div>
+
+    <!-- Blog Categories Well -->
+    <div class="well">
+        <h4>Recent Posts</h4>
+        <div class="row">
+            <div class="col-lg-12">
+                <ul id="posts_sidebar_links_insert" class="list-unstyled"></ul>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+
+    <!-- Side Widget Well -->
+    <div class="well">
+        <h4>About the Hawsoo Blog</h4>
+        <p><em>We need to keep you updated on the exciting things happening in here!</em></p>
+        <p>Included in this free journal are insights for many aspiring developers, and also tutorials to describe our plan of attack to design and execute in the most efficient way possible.</p>
+    </div>
+
+</div>
+
+<!-- Bootstrap Typeahead JS -->
+<script src="js/typeahead.jquery.min.js"></script>
+
+<!-- Posts List -->
+<script src="templates/blog/blog-post-list.js"></script>
+
+<!-- Insert project/blog entries -->
+<script>
+    $(document).ready(function () {
+        // Add posts (only first 5)
+        var postsList = document.getElementById('posts_sidebar_links_insert');
+        for (var i = 0; i < globalBlogPostList.length && i < 5; i++) {
+            postsList.innerHTML += '<li><a href="blog-post.html?post=' + globalBlogPostList[i][4] + '">' + globalBlogPostList[i][0] + '</a></li>';
+        }
+    });
+</script>
+
+<!-- Search with textbox -->
+<script>
+    $(document).ready(function () {
+        // Search after pressing <ENTER>
+        $('#sidebar_searchbar').keypress(function (e) {
+            if (e.keyCode == 13) {
+                $('#sidebar_button').click();
+            }
+        });
+    });
+
+    var DoSearchQuery = function (queryString) {
+        // Go to search page w/ args
+        window.location.href = 'search.html?q=' + document.getElementById('sidebar_searchbar').value;
+    }
+</script>
+
+<!-- Typeahead -->
+<!--<script>
+    //var availableTags = [
+    //    "ActionScript",
+    //    "AppleScript",
+    //    "Asp",
+    //    "BASIC",
+    //    "C",
+    //    "C++",
+    //    "Clojure",
+    //    "COBOL",
+    //    "ColdFusion",
+    //    "Erlang",
+    //    "Fortran",
+    //    "Groovy",
+    //    "Haskell",
+    //    "Java",
+    //    "JavaScript",
+    //    "Lisp",
+    //    "Perl",
+    //    "PHP",
+    //    "Python",
+    //    "Ruby",
+    //    "Scala",
+    //    "Scheme"
+    //];
+
+    var substringMatcher = function (strs) {
+        return function findMatches(q, cb) {
+            var matches, substringRegex;
+            
+            // an array that will be populated with substring matches
+            matches = [];
+
+            // regex used to determine if a string contains the substring `q`
+            substrRegex = new RegExp(q, 'i');
+
+            // iterate through the pool of strings and for any string that
+            // contains the substring `q`, add it to the `matches` array
+            $.each(strs, function (i, str) {
+                if (substrRegex.test(str)) {
+                    matches.push(str);
+                }
+            });
+
+            cb(matches);
+        };
+    };
+
+    $('#sidebar_searchbar').typeahead({
+        hint: false,
+        highlight: true,
+        minLength: 1
+    },
+    {
+        name: 'programming-langs',
+        source: substringMatcher(globalBlogPostTitles)
+    });
+</script>-->
+
+<!-- Autocomplete for search bar -->
+<!--<script>
+    var availableTags = [
+        "ActionScript",
+        "AppleScript",
+        "Asp",
+        "BASIC",
+        "C",
+        "C++",
+        "Clojure",
+        "COBOL",
+        "ColdFusion",
+        "Erlang",
+        "Fortran",
+        "Groovy",
+        "Haskell",
+        "Java",
+        "JavaScript",
+        "Lisp",
+        "Perl",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Scheme"
+    ];
+
+    // Hide/show buttons
+    var SetTypeaheadVisible = function (flag) {
+        if (flag) {
+            // Set to visible
+            document.getElementById('sidebar_searchbar_typehead_list').style.display = 'block';
+        } else {
+            // Wait a bit
+            //setTimeout(function () {
+                // Set to invisible
+                document.getElementById('sidebar_searchbar_typehead_list').style.display = 'none';
+            //}, 500);
+        }
+    }
+
+    // Run when key was typed
+    $('#sidebar_searchbar').on("input",
+        function () {
+            // Get prerequisite info
+            var text = document.getElementById('sidebar_searchbar').value;
+            document.getElementById('sidebar_searchbar_typehead_list').innerHTML = '';
+
+            if (/\S/.test(text)) {
+                var foundPromptIndices = new Array();
+                var curIndex = 0;
+
+                // Find matching lists
+                for (var i = 0; i < globalBlogPostList.length; i++) {
+                    if (globalBlogPostList[i][0].toLowerCase().indexOf(text.toLowerCase()) > -1) {
+                        // Add entry to indices
+                        foundPromptIndices[curIndex] = i;
+                        curIndex++;
+                    }
+                }
+
+                // Show result in typeahead list
+                var typeaheadList = document.getElementById('sidebar_searchbar_typehead_list');
+
+                for (var i = 0; i < foundPromptIndices.length; i++) {
+                    //typeaheadList.innerHTML += '<a class="btn btn-default" href="blog-post.html?post=' + globalBlogPostList[foundPromptIndices[i]][4] + '">' + globalBlogPostList[foundPromptIndices[i]][0] + '</a>';
+                    typeaheadList.innerHTML += '<li><a href="blog-post.html?post=' + globalBlogPostList[foundPromptIndices[i]][4] + '">' + globalBlogPostList[foundPromptIndices[i]][0] + '</a></li>';
+                }
+                //for (var i = 0; i < availableTags.length; i++) {
+                //    if (availableTags[i].toLowerCase().indexOf(text.toLowerCase()) > -1) {
+                //        // Add entry to indices
+                //        foundPromptIndices[curIndex] = i;
+                //        curIndex++;
+                //    }
+                //}
+
+                //// Print result
+                //console.log(foundPromptIndices);
+
+                //// Show result in typeahead list
+                //var typeaheadList = document.getElementById('sidebar_searchbar_typehead_list');
+
+                //for (var i = 0; i < foundPromptIndices.length; i++) {
+                //    typeaheadList.innerHTML += '<a class="btn btn-default btn-block" href="blog-post.html?post=' + availableTags[foundPromptIndices[i]] + '">' + availableTags[foundPromptIndices[i]] + '</a>';
+                //}
+            }
+        });
+</script>-->
