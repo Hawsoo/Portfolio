@@ -12,6 +12,6 @@
 
         // Goto blog post
         console.log(workingDir + '/../../../blog-post.html?post=' + filename);
-        //window.location.href = workingDir + '/../../../blog-post.html?post=' + filename;
-    }, 500);
+        window.location.href = workingDir + '/../../../blog-post.html?post=' + filename;
+    }, 0);
 });
