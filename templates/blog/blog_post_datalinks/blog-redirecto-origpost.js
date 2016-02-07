@@ -1,5 +1,4 @@
 ﻿$(document).ready(function () {
-    //setTimeout(function () {
         // Get blog post SKU
         var url = window.location.pathname;
         url = url.substring(url.lastIndexOf('/') + 1);
@@ -13,5 +12,4 @@
         // Goto blog post
         console.log(workingDir + '/../../../blog-post.html?post=' + filename);
         window.location.href = workingDir + '/../../../blog-post.html?post=' + filename;
-    //}, 0);
 });
