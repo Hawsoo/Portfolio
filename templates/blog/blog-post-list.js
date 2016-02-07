@@ -8,7 +8,7 @@
         "The website you are currently viewing is highly automated. Planning it to act as a regular website proves to be a challenge."
     ],
     [
-        "The Big Picture of ",
+        "The Big Picture of Game-Making",
         "Hawsoo",
         "February 4, 2016",
         "http://www.theartimes.com/wp-content/uploads/2013/03/to_catch_the_moonfish_by_qinni-d5v0kqt-900x300.jpg",
