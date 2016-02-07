@@ -9,12 +9,6 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <!--<meta property="og:url" content="Poopoo1" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Poopoo3" />
-    <meta property="og:description" content="Poopoo4" />
-    <meta property="og:image" content="http://www.theartimes.com/wp-content/uploads/2013/03/to_catch_the_moonfish_by_qinni-d5v0kqt-900x300.jpg" />-->
-
     <!-- Page attributes -->
     <link rel="shortcut icon" href="images/favicon.png">
 
@@ -174,7 +168,7 @@
                     var postAuthor = '';
                     var postTimeStamp = '';
                     var postImg = '';
-                    var postDesc = '';
+                    var postSKU = '';
 
                     for (var i = 0; i < globalBlogPostList.length; i++) {
                         // Find matching 'post'
@@ -184,7 +178,7 @@
                             postAuthor = globalBlogPostList[i][1];
                             postTimeStamp = globalBlogPostList[i][2];
                             postImg = globalBlogPostList[i][3];
-                            postDesc = globalBlogPostList[i][5];
+                            postSKU = globalBlogPostList[i][4];
                             break;
                         }
                     }
@@ -203,17 +197,15 @@
                     $('#blog_content_import').load('templates/blog/' + postQuery + '/body.html');
                     console.log(document.getElementById('blog_content_import'));
 
-                    // Add OpenGraph tags (for FB)
-                    document.getElementById('head_tag').innerHTML +=
-                        '<meta property="og:url" content="' + window.location.href + '" />' +
-                        '<meta property="og:type" content="website" />' +
-	                    '<meta property="og:title" content="' + postTitle + '" />' +
-	                    '<meta property="og:description" content="' + postDesc + '" />' +
-	                    '<meta property="og:image" content="' + postImg + '" />';
+                    // Get name of working directory
+                    var location = window.location.href;
+                    var workingDir = location.substring(0, location.lastIndexOf('/'));
 
                     // Add Comments & like button
-                    document.getElementById('fb_like_insert').innerHTML = '<div class="fb-like" data-href="' + window.location.href + '" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>';
+                    document.getElementById('fb_like_insert').innerHTML = '<div class="fb-like" data-href="' + workingDir + '/templates/blog/blog_post_datalinks/' + postSKU + '.html" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>';
                     document.getElementById('fb_comments_insert').innerHTML = '<div class="fb-comments" data-href="' + window.location.href + '" data-width="100%" data-numposts="5"></div>';
+
+                    console.log(workingDir + '/templates/blog/blog_post_datalinks/' + postSKU + '.html');
                 }
             }
 
