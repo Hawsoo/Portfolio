@@ -7,28 +7,14 @@
     <meta property="og:title" content="A Guide to Designing Website Structure" />
     <meta property="og:description" content="The website you are currently viewing is highly automated. That's the main feature of the design and construction of said website. This guide covers the process of planning and creating this website as well as many techniques and libraries that can be used to make that process even more efficient." />
     <meta property="og:image" content="http://images.fineartamerica.com/images-medium-large-5/colorful-sunrise-reflections-art-photo-download-and-wallpaper-screensaver-geoff-childs.jpg" />
+
+    <title>Redirecting...</title>
 </head>
 <body>
     <!-- jQuery -->
     <script src="../../../js/jquery.js"></script>
 
     <!-- Redirect to original link -->
-    <script>
-        $(document).ready(function () {
-            // Get blog post SKU
-            var url = window.location.pathname;
-            url = url.substring(url.lastIndexOf('/') + 1);
-            var filename = url.substring(0, url.indexOf('.'));
-            console.log(filename);
-
-            // Get name of working directory
-            var location = window.location.href;
-            var workingDir = location.substring(0, location.lastIndexOf('/'));
-
-            // Goto blog post
-            console.log(workingDir + '/../../../blog-post.html?post=' + filename);
-            window.location.href = workingDir + '/../../../blog-post.html?post=' + filename;
-        });
-    </script>
+    <script src="blog-redirecto-origpost.js"></script>
 </body>
 </html>

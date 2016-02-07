@@ -7,28 +7,14 @@
     <meta property="og:title" content="Episode 1 of Dev Blog" />
     <meta property="og:description" content="A summary and notes of the first episode on the Youtube Dev Blog! Of course, being the absolute first, the song may be distracting, and my voice may suck, but at least when we start, we set the baseline for improvement. There's so much to see, and going into the second episode will be much better smooth sailing." />
     <meta property="og:image" content="http://www.theartimes.com/wp-content/uploads/2013/03/to_catch_the_moonfish_by_qinni-d5v0kqt-900x300.jpg" />
+
+    <title>Redirecting...</title>
 </head>
 <body>
     <!-- jQuery -->
     <script src="../../../js/jquery.js"></script>
 
     <!-- Redirect to original link -->
-    <script>
-        $(document).ready(function () {
-            // Get blog post SKU
-            var url = window.location.pathname;
-            url = url.substring(url.lastIndexOf('/') + 1);
-            var filename = url.substring(0, url.indexOf('.'));
-            console.log(filename);
-
-            // Get name of working directory
-            var location = window.location.href;
-            var workingDir = location.substring(0, location.lastIndexOf('/'));
-
-            // Goto blog post
-            console.log(workingDir + '/../../../blog-post.html?post=' + filename);
-            window.location.href = workingDir + '/../../../blog-post.html?post=' + filename;
-        });
-    </script>
+    <script src="blog-redirecto-origpost.js"></script>
 </body>
 </html>
